@@ -43,9 +43,7 @@ module ValidatesTimeliness
 
       @restrictions_to_check = RESTRICTIONS.keys & options.keys
       super
-    end
 
-    def setup(model)
       if model.respond_to?(:timeliness_validated_attributes)
         model.timeliness_validated_attributes ||= []
         model.timeliness_validated_attributes |= @attributes

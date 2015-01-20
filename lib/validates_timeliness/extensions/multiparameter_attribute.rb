@@ -42,8 +42,8 @@ module ValidatesTimeliness
       end
 
       def read_value_with_timeliness
-        @column = object.class.reflect_on_aggregation(name.to_sym) || object.column_for_attribute(name)
-        klass   = column.klass
+        @cast_type = object.type_for_attribute(name)
+        klass = cast_type.klass
 
         set_values = values.is_a?(Hash) ? values.to_a.sort_by(&:first).map(&:last) : values
         if set_values.empty? || set_values.all?{ |v| v.nil? }
